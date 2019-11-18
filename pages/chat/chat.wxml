@@ -1,0 +1,76 @@
+<!--pages/chat/chat.wxml-->
+<import src="../../template/nav" />
+
+<!-- <view class="section__title">点击键盘图标快速发送：</view> -->
+
+<view bindtap="outbtn">
+    <scroll-view scroll-y scroll-into-view='{{toView}}' style='height: {{scrollHeight}};'>
+      <view class="school-list">
+        <!-- <block wx:for="{{newslist}}" wx:key="{{index}}">
+        <view class="chat-wrap" index="{{item.id}}" data-material="{{item}}" bindtap="downraw">
+          <view class="chat-item">{{item.content}}</view>
+        </view>
+      </block> -->
+        <block wx:for="{{newslist}}" wx:key="{{index}}" wx:for-index="index">
+          <!-- 历史消息 -->
+          <!-- <view class="chat-news">
+              <view style="text-align: left;padding-left: 20rpx;">
+                  <image class='new_img' src="{{item.avatarUrl? item.avatarUrl:'images/avator.png'}}"></image>
+                  <text class="name">{{ item.nickName }}{{item.date}}</text>
+              </view>
+              <view class='you_left'>
+                  <block wx:if="{{item.type=='text'}}">      
+                    <view class='new_txt'>{{item.content}}</view>
+                  </block>
+                  <block wx:if="{{item.type=='image'}}">      
+                    <image class="selectImg" src="{{item.images}}"></image> 
+                  </block>
+              </view>
+          </view>   -->
+          <!--自己的消息  -->
+          <view id='msg-{{index}}' class="chat-news" wx:if="{{item.nickName == userInfo.nickName}}">
+            <view style="text-align: center;">{{item.date}}</view>
+              <view style="text-align: right;">
+                <text class="name">{{ item.nickName }}</text>
+                <image class='new_img' src="{{userInfo.avatarUrl}}"></image>
+              </view>
+              <view class='my_right'>
+                <block wx:if="{{item.type=='text'}}">
+                  <view class='new_txt'>{{item.content}}</view>
+                </block>
+              </view>
+          </view>
+          <!-- 别人的消息  -->
+          <view id='msg-{{index}}' wx:else>
+            <view style="text-align: center;">{{item.date}}</view>
+            <view class="chat-news">
+              <view style="text-align: left;">
+                <image class='new_img' src="{{item.avatarUrl? item.avatarUrl:'images/avator.png'}}"></image>
+                <text class="name">{{ item.nickName }}</text>
+              </view>
+              <view class='you_left'>
+                <block wx:if="{{item.type=='text'}}">
+                  <view class='new_txt'>{{item.content}}</view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+</view>
+
+  <view class="input-text-voice-super" style="bottom:{{inputBottom}}">
+    <image src="../../images/keyboard.png" class="extra-btn-style" bindtap="fastKeyboard" />
+    <input type="text" class="chat-input-style" maxlength="500" placeholder="请输入聊天内容.." bindconfirm="send" adjust-position='{{false}}' confirm-type="send" value="{{message}}" bindinput="bindChange" bindfocus="focus" bindblur="blur"/>
+    <!-- <input type="text" hover="true" hover-class="btnhover" catchtap="send" class="chat-input-send-button-style" value="发送"/> -->
+    <button hover="true" hover-class="btnhover" catchtap="send" class="chat-input-send-button-style">发送</button>
+  </view>
+
+<view wx:if="{{fastMessage}}" class="fastKey">
+  <view class="fast-info" bindtap="fastSend" wx:for="{{fastList}}" wx:key="{{index}}" data-text="{{item.text}}">{{item.text}}</view>
+</view>
+
+<!-- 功能悬浮球 -->
+<!--bindmenuItemClick为按钮点击的时候的回调方法  mainmodel是显示的按钮，menulist为折叠的菜单的数组数据-->
+<movemenu bindmenuItemClick="menuItemClick" mainmodel="{{mainmodel}}" menulist="{{menulist}}"></movemenu>

@@ -1,0 +1,370 @@
+/* pages/chat/chat.wxss */
+
+page {
+  background-color: #313247;
+  height: 100%;
+}
+
+.section__title{
+  width:100%;
+  height: 42px;
+	position:fixed;
+  top: 0rpx;
+  z-index:2;
+  font-size: 28rpx;
+  color: #fff;
+  padding: 20rpx 40rpx;
+}
+
+.schoollist{
+  /* padding-top: 84rpx; */
+  height: 100%;  
+  width: 100%;  
+  /* flex-direction: column;   */
+  display: flex; 
+  border-top: 0px;
+}
+
+.school-list{
+  padding: 40rpx 40rpx 0 40rpx;
+  margin-bottom: 120rpx;
+}
+
+/* 聊天内容 */
+.chat-wrap{
+  display: table;
+  max-width: 400rpx;
+  min-height: 60rpx;
+  margin: 10rpx 10rpx 40rpx 10rpx;
+}
+.chat-item{
+  /* box-shadow: 10px 10px 5px #535467; */
+  box-shadow: 0 5rpx 10rpx 5rpx #ffffff;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: #ffffff;
+  border-radius: 15rpx;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.news {
+  /* padding-top: 30rpx; */
+  text-align: center;
+  /* height:100%; */
+  box-sizing: border-box;
+}
+
+.chat-notice {
+  text-align: center;
+  font-size: 30rpx;
+  padding: 10rpx 0;
+  color: #666;
+}
+
+.historycon {
+  height: 100%;
+  width: 100%;
+  /* flex-direction: column;   */
+  display: flex;
+  border-top: 0px;
+}
+
+/* 聊天 */
+
+.chat-item {
+  /* box-shadow: 10px 10px 5px #535467; */
+  box-shadow: 0 5rpx 10rpx 5rpx #fff;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: #fff;
+  border-radius: 15rpx;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 20rpx;
+  text-align: left;
+}
+
+input {
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  width: 100%;
+}
+
+.extra-btn-style {
+  width: 65rpx;
+  height: 65rpx;
+  padding: 5rpx 20rpx;
+  display: flex;
+  flex-shrink: 0;
+  margin-left: 40rpx;
+}
+
+.input-text-voice-super {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 110rpx;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  background-color: #313247;
+  z-index: 20;
+}
+.list-divide-line {
+  width: 100%;
+  height: 1rpx;
+  background-color: #ddd;
+}
+
+.chat-input-style {
+  border-radius: 20rpx;
+  border: 1rpx solid #fff;
+  margin-top: 14rpx;
+  margin-bottom: 13rpx;
+  padding: 10rpx 20rpx;
+  min-height: 45rpx;
+  color: #ffffff;
+}
+
+.chat-input-send-button-style {
+  width: 170rpx;
+  height: 70rpx;
+  padding: 0 10rpx;
+  font-size: 30rpx;
+  text-align: center;
+  margin: 0 45rpx 0 20rpx;
+  border-radius: 15rpx;
+  border: 1rpx solid #fff;
+  color: #fff;
+  background-color: transparent;
+}
+
+.btnhover {
+  border: 1rpx solid #ffffff;
+  color: #3A3A52;
+  background-color: #ffffff;
+}
+
+/* 聊天 */
+
+.chat-news {
+  width: 100%;
+  overflow: hidden;
+}
+
+.chat-news .my_right {
+  float: right;
+  /* right: 40rpx;  */
+  padding: 10rpx 10rpx;
+}
+
+.chat-news .name {
+  margin-right: 10rpx;
+  color: #fff;
+}
+
+.chat-news .you_left {
+  float: left;
+  /* left: 5rpx;  */
+  padding: 10rpx 10rpx;
+}
+
+.selectImg {
+  display: inline-block;
+  width: 150rpx;
+  height: 150rpx;
+  margin-left: 50rpx;
+}
+
+.my_right .selectImg {
+  margin-right: 80rpx;
+}
+
+.new_img {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+
+.new_txt {
+  max-width: 500rpx;
+  display: inline-block;
+  line-height: 60rpx;
+  /* border-radius: 6rpx;
+  background-color: #95d4ff; */
+  border-radius: 15rpx;
+  /* box-shadow: 0 5rpx 10rpx 5rpx #fff; */
+  border: 2rpx solid #fff;
+  padding: 5rpx 20rpx;
+  color: #fff;
+  margin: 0 10rpx;
+  margin-left: 50rpx;
+}
+
+/* .my_right .new_txt {
+  margin-right: 60rpx;
+} */
+
+.you {
+  background-color: lightgreen;
+}
+
+/* .sanjiao {  
+  top: 70rpx;  
+  position: relative;  
+  width: 0px;  
+  height: 0px;  
+  border-width: 10px;  
+  border-style: solid;  
+}   */
+
+.my {
+  border-color: transparent transparent transparent #95d4ff;
+}
+
+.you {
+  border-color: transparent #95d4ff transparent transparent;
+}
+
+.hei {
+  margin-top: 50px;
+  height: 20rpx;
+}
+
+.history {
+  /* height: 100%; */
+  padding: 0 40rpx;
+  font-size: 28rpx;
+  line-height: 40px;
+  word-break: break-all;
+  /* margin-top: 84rpx; */
+  background-color: #95d4ff;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  z-index: -1;
+}
+
+/* 信息输入区域 */
+.chat-input {
+  position: fixed;
+  bottom: 120rpx;
+  width: 100%;
+}
+/* .message {
+  position: fixed;
+  bottom: 55px;
+  width: 100%;
+}
+
+.sendMessage{
+  display: block;
+  height: 80rpx;
+  padding: 10rpx 10rpx; 
+  background-color: #fff; 
+  border-top: 2rpx solid #eee;
+  border-bottom: 2rpx solid #eee; 
+  z-index:3;  
+} */
+
+/* .sendMessage input{
+   float:left;
+   width: 66%;
+   height: 100%;
+   line-height: 80rpx;
+   border-bottom: 1rpx solid #ccc;
+   padding:0 10rpx; 
+   font-size: 35rpx;
+   color: #666;
+}
+.sendMessage view{
+  display: inline-block; 
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx; 
+  font-size: 60rpx; 
+  text-align: center;
+  color: #999;
+  border: 1rpx solid #ccc;
+  border-radius: 50%;
+  margin-left: 10rpx;
+} 
+.sendMessage button {
+  float: right;
+  font-size: 35rpx;
+} */
+
+.increased {
+  width: 100%;
+  /* height: 150rpx; */
+  padding: 40rpx 30rpx;
+  background-color: #fff;
+}
+
+.increased .image {
+  width: 100rpx;
+  height: 100rpx;
+  border: 3rpx solid #ccc;
+  line-height: 100rpx;
+  text-align: center;
+  border-radius: 8rpx;
+  font-size: 35rpx;
+}
+
+@keyframes slidedown {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.slidedown {
+  animation: slidedown 0.5s linear;
+}
+
+.slideup {
+  animation: slideup 0.5s linear;
+}
+
+@keyframes slideup {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* 快捷輸入 */
+.fastKey{
+  position: fixed;
+  bottom: 111rpx;
+  left: 40rpx;
+  width: 500rpx;
+  background-color: #3A3A52;
+  color: #fff;
+  border: 1rpx solid #fff;
+}
+
+.fast-info{
+  border-bottom: 2rpx solid #ccc;
+  padding: 10rpx 20rpx;
+}
+
+/* 功能按键 */
+.menuarea{
+  height: 80%;
+  padding: 70rp 40rpx;
+}

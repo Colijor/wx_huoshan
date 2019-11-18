@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/paScreen/paScreen",
+    "pages/Scenes/Scenes",
+    "pages/material/material",
+    "pages/chat/chat"
+  ],
+  "window": {
+    "backgroundColor": "#313247",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3A3A52",
+    "navigationBarTitleText": "火山巨幕",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#dddddd",
+    "selectedColor": "#ffe570",
+    "borderStyle": "white",
+    "backgroundColor": "#3A3A52",
+    "list": [
+      {
+        "selectedIconPath": "images/tabBarIcon/sucai1.png",
+        "iconPath": "images/tabBarIcon/sucai.png",
+        "pagePath": "pages/material/material",
+        "text": "素材"
+      },
+      {
+        "selectedIconPath": "images/tabBarIcon/changjing1.png",
+        "iconPath": "images/tabBarIcon/changjing.png",
+        "pagePath": "pages/Scenes/Scenes",
+        "text": "场景"
+      },
+      {
+        "selectedIconPath": "images/tabBarIcon/danmu1.png",
+        "iconPath": "images/tabBarIcon/danmu.png",
+        "pagePath": "pages/chat/chat",
+        "text": "弹幕"
+      },
+      {
+        "selectedIconPath": "images/tabBarIcon/baping1.png",
+        "iconPath": "images/tabBarIcon/baping.png",
+        "pagePath": "pages/paScreen/paScreen",
+        "text": "霸屏"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

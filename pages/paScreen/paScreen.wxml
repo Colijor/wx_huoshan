@@ -1,0 +1,66 @@
+<!--pages/chat/chat.wxml-->
+<import src="../../template/nav" />
+
+<!-- <modal id="modal" hidden="{{hiddenmodalput}}" title="霸屏文字" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
+  <input id="" type='text' placeholder="文字" auto-focus bindinput="inputbaping" />
+</modal> -->
+
+<view class="schoollist ">
+    <view class="school-list">
+      <block wx:for="{{items}}" wx:for-index="i">
+        <view class="school-list-item">
+          <block wx:for="{{2}}" wx:for-index="k" wx:for-item="item_k">
+            <view wx:if="{{items[i+item_k] != null && i%2 == 0 }}" class="school-list-info" data-index="{{i+item_k}}" data-baping="{{items[i+item_k]}}" bindtap="increase">
+              <image id="img{{items[i+item_k].id}}" class="{{showId == items[i+item_k].id ? 'school-list-photo-Selected':'school-list-photo'}}" src="https://huoshan.szhssj.com.cn/baping/{{items[i+item_k].id}}/frame_compact.png" />
+              <image wx:if="{{items[i+item_k].free == 1}}" class="school-list-photo-free-up" src="../../images/free.png" />
+              <view wx:if="{{items[i+item_k].state != 1}}" class="school-list-photo school-list-photo-up">
+                  <text class="school-list-notLoad">{{items[i+item_k].state == 0 ?'未下载' : '下载中'}}</text>
+                </view>
+              <text class="school-list-desc">{{items[i+item_k].name}}</text>
+            </view>
+          </block>
+        </view>
+      </block>
+    </view>
+</view>
+
+<!-- 设置霸屏内容 -->
+<view wx:if="{{hiddenmodalput}}" class="bapingContent">
+  <view class="closeBpsetting" bindtap="closeBpSet">
+    <image src='../../images/close.png'></image>
+  </view>
+  <form class="sendMessage">
+    <view class="message">
+      <image class="school-list-photo2" src="{{bpZhuti}}"></image>
+      <!-- <view wx:if="{{selectTime}}" class='select_box'>
+        <text>时长:</text>
+        <view class='select' catchtap='selectTap'>
+          <text class='select_text'>{{duration}}/秒</text>
+          <image class='select_img select_img_rotate' src='../../images/down2.png' background-size="contain"></image>
+        </view>
+        <text>{{price}}元</text>
+        <view class='option_box' style="height:{{selectShow?(selectData.length>5?250:selectData.length*50):0}}rpx;">
+          <text class='option' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}' data-id='{{item.id}}' catchtap='optionTap'>{{item.time}}</text>
+        </view>
+      </view> -->
+      <view wx:if="{{selectTime}}" class='select_box'>
+        <text style="margin-right: 16rpx;">时长:</text>
+        <Select prop-array='{{selectData}}' prop-type='name' prop-color='3' bindselectClick="selectClick"></Select>
+        <text style="margin-left: 16rpx;">{{price}}元</text>
+      </view>
+      <image class="school-list-photo2" src="{{bpImg}}"></image>
+      <view class="input-text-voice-super">
+        <image src="../../images/keyboard.png" class="extra-btn-style1" bindtap="changeInputWayEvent" />
+        <input class="chat-input-style" maxlength="500" placeholder="请输入霸屏内容.." value="{{bapingword}}" bindinput="bindChange" disabled="{{isdisabled}}" />
+        <image wx:if="{{increase}}" src="../../images/addImg.png" class="extra-btn-style2" bindtap="chooseImage" />
+        <!-- <input class="chat-input-style" maxlength="500" placeholder="请输入霸屏内容.." value="{{bapingword}}" bindinput="bindChange"/>
+        <image src="../../images/addImg.png" class="extra-btn-style2" bindtap="chooseImage" /> -->
+        <button hover="true" hover-class="btnhover" class="chat-input-send-button-style" bindtap='send'>发送</button>
+      </view>
+    </view>
+  </form>
+</view>
+
+<!-- 功能悬浮球 -->
+<!--bindmenuItemClick为按钮点击的时候的回调方法  mainmodel是显示的按钮，menulist为折叠的菜单的数组数据-->
+<movemenu bindmenuItemClick="menuItemClick" mainmodel="{{mainmodel}}" menulist="{{menulist}}"></movemenu>

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "火山巨幕",
+  "navigationBarBackgroundColor": "#313247",
+  "usingComponents": {
+    "movemenu": "/components/movemenu/movemenu",
+    "Select": "/components/select/select"
+  },
+  "enablePullDownRefresh": true
+}

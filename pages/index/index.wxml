@@ -1,0 +1,58 @@
+<!--index.wxml-->
+<!-- <view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}"  open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击获取我的昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view bindtap="toChat"><button class="chat"> ♥ 扫码进入</button></view>
+</view> -->
+
+<view wx:if="{{canIUse}}" class="authorize">
+  <view class='top'>
+    <image src='../../images/loginBg.jpg'></image>
+  </view>
+
+  <view class='content'>
+    <view class="loginTitle">登录说明</view>
+    <view class="loginTitle1">注：手机连接房间wifi才能使用哦~</view>
+    <view class="loginTitle2">先申请登录，然后扫描房间巨幕二维码进入</view>
+    <view class="info-wrap">
+      <view class="info-wrap-item">
+        <view class="info">
+          <view class="info-item">
+            <icon class="iconfont icon-sucai"></icon>
+            <text>播放效果</text>
+          </view>
+        </view>
+        <view class="info">
+          <view class="info-item">
+            <icon class="iconfont icon-danmu"></icon>
+            <text>发送弹幕</text>
+          </view>
+        </view>
+      </view>
+      <view class="info-wrap-item">
+        <view class="info">
+          <view class="info-item">
+            <icon class="iconfont icon-changjing"></icon>
+            <text>播放模式</text>
+          </view>
+        </view>
+        <view class="info">
+          <view class="info-item">
+            <icon class="iconfont icon-baping"></icon>
+            <text>发送霸屏</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view  class='bottom'>
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 申请登录 </button>
+    <button bindtap="toChat">{{loginMsg}}</button>
+  </view>
+</view>
+<view wx:else>请升级微信版本</view>

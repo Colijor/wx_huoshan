@@ -1,0 +1,10 @@
+<!--components/select/select.wxml-->
+<view class='com-selectBox'>
+    <view class='com-sContent' bindtap='selectToggle' style="border-radius:{{selectShow? '20rpx 20rpx 0 0' : '20rpx'}}">
+        <view class='com-sTxt'>{{propColor == 1 ? nowText : nowText3}}</view>
+        <image src='../../images/down.png'  class='com-sImg'  animation="{{animationData}}"></image>
+    </view>
+    <view class='com-sList' wx:if="{{selectShow}}" style="background-color:{{propColor == 1 ? '#3A3A52' :'#535178'}}">
+        <view wx:for="{{propArray}}" data-index="{{index}}" data-item="{{item}}" wx:key='' class='com-sItem' bindtap='setText'>{{item.text}}</view>
+    </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": " 火山巨幕",
+   "usingComponents": {
+    "movemenu": "/components/movemenu/movemenu"
+  }
+}

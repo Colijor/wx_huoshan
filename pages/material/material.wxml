@@ -1,0 +1,94 @@
+<!--pages/chat/chat.wxml-->
+<import src="../../template/nav" />
+
+<view class="nav nav-wrap">
+  <view class="{{selected?'yellow':'default'}}" bindtap="selected">全部</view>
+  <view class="{{selected1?'yellow':'default'}}" bindtap="selected1">云端</view>
+  <view class="{{selected2?'yellow':'default'}}" bindtap="selected2">本地</view>
+  <!-- <view class='select_box'>
+    <text>类别:</text>
+    <view class='select' catchtap='selectTap'>
+      <text class='select_text'>{{selectData[index].name}}</text>
+      <image class='select_img {{selectShow&&"select_img_rotate"}}' src='../../images/down2.png' background-size="contain"></image>
+    </view>
+    <view class='option_box' style="display:{{selectShow?'block':'none'}};height:{{selectShow?(selectData.length>5?200:selectData.length*40):0}}rpx;">
+      <text class='option' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}' data-id='{{item.id}}' catchtap='optionTap'>{{item.name}}</text>
+    </view>
+  </view> -->
+  <view class='select_box'>
+    <Select prop-array='{{selectData}}' prop-type='name' prop-color='1' bindselectClick="selectClick"></Select>
+  </view>
+</view>
+
+<!-- 全部 -->
+<view class="{{selected?'show':'hidden'}}">
+  <view class="schoollist">
+    <!-- <scroll-view scroll-y="true" class="history" scroll-top="0" style="height: {{scrollheight+'px'}}"> -->
+      <view class="school-list">
+        <block wx:for="{{items}}" wx:for-index="i">
+          <view class="school-list-item">
+            <block wx:for="{{2}}" wx:for-index="k" wx:for-item="item_k">
+              <view wx:if="{{items[i+item_k] != null && i%2 == 0 }}" class="school-list-info" data-items="{{items[i+item_k]}}" data-index="{{i+item_k}}" bindtap="downraw">
+                <image id="img{{items[i+item_k].id}}" class="{{showId == items[i+item_k].id ? 'school-list-photo-Selected':'school-list-photo'}}" src="{{items[i+item_k].url}}" />
+                <view wx:if="{{items[i+item_k].state != 1}}" class="school-list-photo school-list-photo-up">
+                  <text class="school-list-notLoad">{{items[i+item_k].state == 0 ?'未下载' : '下载中'}}</text>
+                </view>
+                <text class="school-list-desc">{{items[i+item_k].name}}</text>
+              </view>
+            </block>
+          </view>
+        </block>
+      </view>
+    <!-- </scroll-view> -->
+  </view>
+</view>
+
+<!-- 云端 -->
+<view class="{{selected1?'show':'hidden'}}">
+  <view class="schoollist">
+    <!-- <scroll-view scroll-y="true" class="history" scroll-top="0" style="height: {{scrollheight+'px'}}"> -->
+      <view class="school-list">
+        <block wx:for="{{items}}" wx:for-index="i">
+          <view class="school-list-item">
+            <block wx:for="{{2}}" wx:for-index="k" wx:for-item="item_k">
+              <view wx:if="{{items[i+item_k] != null && i%2 == 0 }}" class="school-list-info" data-items="{{items[i+item_k]}}" data-index="{{i+item_k}}" bindtap="downraw">
+                <image id="img{{items[i+item_k].id}}" class="{{showId == items[i+item_k].id ? 'school-list-photo-Selected':'school-list-photo'}}" src="{{items[i+item_k].url}}" />
+                <view wx:if="{{items[i+item_k].state != 1}}" class="school-list-photo school-list-photo-up">
+                  <text class="school-list-notLoad">{{items[i+item_k].state == 0 ?'未下载' : '下载中'}}</text>
+                </view>
+                <text class="school-list-desc">{{items[i+item_k].name}}</text>
+              </view>
+            </block>
+          </view>
+        </block>
+      </view>
+    <!-- </scroll-view> -->
+  </view>
+</view>
+
+<!-- 本地 -->
+<view class="{{selected2?'show':'hidden'}}">
+  <view class="schoollist">
+    <!-- <scroll-view scroll-y="true" class="history" scroll-top="0" style="height: {{scrollheight+'px'}}"> -->
+      <view class="school-list">
+        <block wx:for="{{items}}" wx:for-index="i">
+          <view class="school-list-item">
+            <block wx:for="{{2}}" wx:for-index="k" wx:for-item="item_k">
+              <view wx:if="{{items[i+item_k] != null && i%2 == 0 }}" class="school-list-info" data-items="{{items[i+item_k]}}" data-index="{{i+item_k}}" bindtap="downraw">
+                <image id="img{{items[i+item_k].id}}" class="{{showId == items[i+item_k].id ? 'school-list-photo-Selected':'school-list-photo'}}" src="{{items[i+item_k].url}}" />
+                <view wx:if="{{items[i+item_k].state != 1}}" class="school-list-photo school-list-photo-up">
+                  <text class="school-list-notLoad">{{items[i+item_k].state == 0 ?'未下载' : '下载中'}}</text>
+                </view>
+                <text class="school-list-desc">{{items[i+item_k].name}}</text>
+              </view>
+            </block>
+          </view>
+        </block>
+      </view>
+    <!-- </scroll-view> -->
+  </view>
+</view>
+
+<!-- 功能悬浮球 -->
+<!--bindmenuItemClick为按钮点击的时候的回调方法  mainmodel是显示的按钮，menulist为折叠的菜单的数组数据-->
+<movemenu bindmenuItemClick="menuItemClick" mainmodel="{{mainmodel}}" menulist="{{menulist}}"></movemenu>
