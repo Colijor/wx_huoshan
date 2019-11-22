@@ -248,10 +248,13 @@ Page({
       websocket.send(JSON.stringify(data));
     } else if (scenes.state == 1) {
       //已下载，就播放
-      var data = {};
-      data.command = "sendctrl";
-      data.v = "17";
-      data.d = scenes.txtPath;
+      var data = {
+        command: "sendctrl",
+        v: "17",
+        d: {
+          k1: scenes.txtPath
+        }
+      };
       console.log("播放场景");
       console.log(JSON.stringify(data));
       websocket.send(JSON.stringify(data));
@@ -281,19 +284,19 @@ Page({
     //事件的处理 代码
     switch (clickInfo.id) {
       case "1":
-        websocket.send('{ "command": "sendctrl","v":"33"}');
+        websocket.send('{ "command": "sendctrl","v":"46","d":{"k1":0,"k2":0}}');
         break;
       case "2":
-        websocket.send('{ "command": "sendctrl","v":"32"}');
+        websocket.send('{ "command": "sendctrl","v":"46","d":{"k1":0,"k2":1}}');
         break;
       case "3":
-        websocket.send('{ "command": "sendctrl","v":"34"}');
+        websocket.send('{ "command": "sendctrl","v":"47","d":{"k1":0,"k2":0}}');
         break;
       case "4":
-        websocket.send('{ "command": "sendctrl","v":"35"}');
+        websocket.send('{ "command": "sendctrl","v":"47","d":{"k1":0,"k2":1}}');
         break;
       case "5":
-        websocket.send('{ "command": "sendctrl","v":"1","d":"3"}');
+        websocket.send('{ "command": "sendctrl","v":"43","d":{"k1":0,"k2":1}}');
         break;
       case "6":
         this.setData({

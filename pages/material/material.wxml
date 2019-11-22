@@ -29,7 +29,7 @@
           <view class="school-list-item">
             <block wx:for="{{2}}" wx:for-index="k" wx:for-item="item_k">
               <view wx:if="{{items[i+item_k] != null && i%2 == 0 }}" class="school-list-info" data-items="{{items[i+item_k]}}" data-index="{{i+item_k}}" bindtap="downraw">
-                <image id="img{{items[i+item_k].id}}" class="{{showId == items[i+item_k].id ? 'school-list-photo-Selected':'school-list-photo'}}" src="{{items[i+item_k].url}}" />
+                <image id="img{{items[i+item_k].id}}" class="{{showId == items[i+item_k].id ? 'school-list-photo-Selected':'school-list-photo'}}" src="{{items[i+item_k].resOwnerType == 1 ? 'data:image/png;base64,'+items[i+item_k].imageContent:items[i+item_k].url}}" />
                 <view wx:if="{{items[i+item_k].state != 1}}" class="school-list-photo school-list-photo-up">
                   <text class="school-list-notLoad">{{items[i+item_k].state == 0 ?'未下载' : '下载中'}}</text>
                 </view>
