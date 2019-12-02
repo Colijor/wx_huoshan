@@ -1,0 +1,26 @@
+<!--pages/Special/Special.wxml-->
+<import src="../../template/nav" />
+
+<view class="section__title">点击您喜欢的预览框，即可播放相应的特效</view>
+<view class="schoollist">
+    <view class="school-list">
+      <block wx:for="{{items}}" wx:for-index="i">
+        <view class="school-list-item">
+          <block wx:for="{{2}}" wx:for-index="k" wx:for-item="item_k">
+            <view wx:if="{{items[i+item_k] != null && i%2 == 0 }}" class="school-list-info" data-special="{{items[i+item_k]}}" data-index="{{i+item_k}}" bindtap="chooseSpecial">
+                <image id="img{{items[i+item_k].id}}" class="{{showId == items[i+item_k].id ? 'school-list-photo-Selected':'school-list-photo'}}" src="{{items[i+item_k].image}}"/>
+                <image wx:if="{{items[i+item_k].free == 0}}" class="school-list-photo-free-up" src="../../images/free.png" />
+                <view wx:if="{{items[i+item_k].state != 1}}" class="school-list-photo school-list-photo-up">
+                  <text class="school-list-notLoad">{{items[i+item_k].state == 0 ?'未下载' : '下载中'}}</text>
+                </view>
+                <text class="school-list-desc">{{items[i+item_k].name}}</text>
+              </view>
+          </block>
+        </view>
+      </block>
+    </view>
+</view>
+
+<!-- 功能悬浮球 -->
+<!--bindmenuItemClick为按钮点击的时候的回调方法  mainmodel是显示的按钮，menulist为折叠的菜单的数组数据-->
+<movemenu bindmenuItemClick="menuItemClick"></movemenu>

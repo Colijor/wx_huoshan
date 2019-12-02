@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/paScreen/paScreen",
     "pages/Scenes/Scenes",
+    "pages/Special/Special",
     "pages/material/material",
     "pages/chat/chat"
   ],
@@ -30,6 +31,12 @@
         "iconPath": "images/tabBarIcon/changjing.png",
         "pagePath": "pages/Scenes/Scenes",
         "text": "场景"
+      },
+      {
+        "selectedIconPath": "images/tabBarIcon/texiao1.png",
+        "iconPath": "images/tabBarIcon/texiao.png",
+        "pagePath": "pages/Special/Special",
+        "text": "特效"
       },
       {
         "selectedIconPath": "images/tabBarIcon/danmu1.png",

@@ -1,4 +1,4 @@
-// pages/Scenes/Scenes.js
+// pages/Special/Special.js
 const app = getApp()
 var websocket = require('../../utils/websocket.js');
 var utils = require('../../utils/util.js');
@@ -8,31 +8,36 @@ var localsrcs = [];
 var cloundLists = [];
 var timer = null;
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
     items: [],
-    newslist: [],
-    scrollTop: 0,
-    increase: false, //图片添加区域隐藏
-    aniStyle: true, //动画效果
-    message: "",
-    previewImgList: [],
-    ip: "",
-    sceneid: '',
-    itemsIndex: 0,
     showId: '',
+    state: "-1",
     notScanCode: true,
-    state: "-1"
+    ip: ""
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    //this.onWebsocket();
+  onLoad: function (options) {
+
   },
-  onShow: function() {
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     console.log('onShow');
     console.log(app.globalData.userInfo);
 
@@ -61,7 +66,7 @@ Page({
     });
 
     var that = this;
-    websocket.connect(this.data.ip, function(res) {
+    websocket.connect(this.data.ip, function (res) {
       console.log("接受服务器返回来的消息");
       console.log(res);
 
@@ -76,7 +81,7 @@ Page({
         var jsonObj = JSON.parse(res.data);
         if (jsonObj.command == undefined) {
           //下载中
-          if (jsonObj.data.command == "_changresstate" && jsonObj.data.type == 2) {
+          if (jsonObj.data.command == "_changresstate" && jsonObj.data.type == 4) {
             var id = jsonObj.data.id;
             var data = that.data.items;
             console.log(id);
@@ -85,7 +90,7 @@ Page({
               if (data[i].id == id) {
                 var state = 'items[' + i + '].state';
                 if (jsonObj.data.state == 1) {
-                  setTimeout(function() {
+                  setTimeout(function () {
                     that.setData({
                       [state]: jsonObj.data.state
                     });
@@ -114,11 +119,11 @@ Page({
           if (jsonObj.command == "login") {
             if (jsonObj.result == "SUCCESS") {
               // 5秒发送一次心跳
-              timer = setInterval(function() {
+              timer = setInterval(function () {
                 websocket.send("_m");
               }, 5000);
 
-              that.getScenes();
+              that.getSpecial();
             } else {
               wx.showToast({
                 title: jsonObj.message,
@@ -132,8 +137,8 @@ Page({
               var data = jsonObj.datas;
               // var data = app.globalData.scenesData;
               var item = page > 1 ? that.data.items : [];
-              console.log(data);
-              console.log(item);
+              // console.log(data);
+              // console.log(item);
               data.forEach((items, index, arr) => {
                 // if (items.state == that.data.state || that.data.state == "-1") {
                 item.push(items);
@@ -158,32 +163,32 @@ Page({
               })
             }
           }
-          if (jsonObj.command == "playscence") {
-            if (jsonObj.result == "FAILED") {
-              wx.showToast({
-                title: jsonObj.message,
-                icon: "none",
-                duration: 2000
-              })
-            }
-          }
         }
       }
-    }, function(res) {
+    }, function (res) {
       websocket.send('{ "command": "login", "nickName": "' + app.globalData.userInfo.nickName + '", "avatarUrl": "' + app.globalData.userInfo.avatarUrl + '","code":"' + app.globalData.authcode + '","iv":"' + app.globalData.iv + '","encryptedData":"' + app.globalData.encryptedData + '" ,"roomcode":"' + app.globalData.roomcode + '"}');
     });
   },
-  onHide: function() {
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
     console.log("onhide");
     clearInterval(timer);
     wx.closeSocket();
   },
-  onUnload: function() {
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
     console.log("onUnload");
     clearInterval(timer);
     wx.closeSocket();
   },
-  getScenes: function() {
+
+  getSpecial: function () {
     // 显示加载图标
     wx.showNavigationBarLoading();
 
@@ -198,7 +203,7 @@ Page({
     console.log('默认获取全部数据：');
     var data = {};
     data.command = "getsrc";
-    data.type = "2";
+    data.type = "4";
     data.classify = "-1";
     data.state = "-1";
     data.current = page;
@@ -207,38 +212,38 @@ Page({
     console.log(JSON.stringify(data));
     websocket.send(JSON.stringify(data));
   },
-  // 选中场景
-  chooseScenes: function(e) {
-    var scenes = e.currentTarget.dataset.scenes;
+
+  // 选中特效
+  chooseSpecial: function (e) {
+    console.log(e.currentTarget.dataset)
+    var special = e.currentTarget.dataset.special;
     var itemsIndex = e.currentTarget.dataset.index;
     this.setData({
       itemsIndex: itemsIndex,
-      showId: scenes.id
+      showId: special.id
     });
 
-    if (scenes.state == 0) {
+    if (special.state == 0) {
       //未下载，先下载
-      console.log("下载场景");
+      console.log("下载特效");
       var data = {};
       data.command = "changresstate";
-      data.id = scenes.id;
-      data.type = "2";
-
-      // var state = 'items[' + itemsIndex + '].state';
-      // this.setData({
-      //   [state]: 2
-      // });
+      data.id = special.id;
+      data.type = "4";
 
       console.log(JSON.stringify(data));
       websocket.send(JSON.stringify(data));
-    } else if (scenes.state == 1) {
+    } else if (special.state == 1) {
       //已下载，就播放
       var data = {
-        command: "playscence",
-        index: 0,
-        pngPath: scenes.pngPath
+        command: "sendctrl",
+        v: "49",
+        d: {
+          k1: 0,
+          k2: special.resPath
+        }
       };
-      console.log("播放场景");
+      console.log("播放特效");
       console.log(JSON.stringify(data));
       websocket.send(JSON.stringify(data));
     } else {
@@ -250,13 +255,8 @@ Page({
       })
     }
   },
-  // 页面卸载
-  onUnload() {
-    console.log("onUnload");
-    clearInterval(timer);
-    wx.closeSocket();
-  },
-  menuItemClick: function(res) {
+
+  menuItemClick: function (res) {
     //获取点击事件的信息
     let clickInfo = res.detail.iteminfo
     console.log(clickInfo);
@@ -310,14 +310,15 @@ Page({
               duration: 2000
             })
           },
-          complete: (res) => {}
+          complete: (res) => { }
         });
     }
   },
+
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     console.log("执行下拉");
     // 显示顶部刷新图标
     wx.showNavigationBarLoading();
@@ -326,7 +327,7 @@ Page({
     this.setData({
       items: []
     });
-    this.getScenes();
+    this.getSpecial();
 
     // 隐藏导航栏加载框
     wx.hideNavigationBarLoading();
@@ -337,8 +338,15 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     console.log("执行上拉");
-    this.getScenes();
+    this.getSpecial();
   },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 })

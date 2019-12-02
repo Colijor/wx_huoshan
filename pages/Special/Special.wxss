@@ -1,0 +1,95 @@
+/* pages/Special/Special.wxss */
+/* pages/chat/chat.wxss */
+
+page {
+  background-color: #313247;
+  height: 100%;
+}
+
+.section__title{
+  width:100%;
+	position:fixed;
+  top: 0rpx;
+  z-index:22;
+  font-size: 28rpx;
+  color: #fff;
+  padding: 20rpx 40rpx;
+  background-color: #313247;
+}
+
+.schoollist {
+  padding-top: 74rpx;
+  padding-bottom: 150rpx;
+}
+
+/* .school-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 20rpx;
+} */
+
+.school-list-item{
+  background-color: #3A3A52;
+  width: 100%;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  /* padding-top: 40rpx;
+  padding-bottom: 20rpx; */
+}
+
+.school-list-info {
+  position: relative;
+  width: 40%;
+  margin: 40rpx 40rpx 20rpx 40rpx;
+  border-radius: 8rpx;
+  text-align: center;
+}
+
+.school-list-photo,.school-list-photo-Selected {
+  width: 100%;
+  height: 180rpx;
+  border-radius: 8rpx;
+  vertical-align: middle;
+  border: 4rpx solid #666;
+  box-sizing: border-box;
+}
+
+.school-list-photo-Selected{
+  border: 4rpx solid #ffe570;
+}
+
+.school-list-photo-up {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.school-list-notLoad {
+  color: #fff;
+  font-size: 30rpx;
+}
+
+.school-list-desc{
+  display: block;
+  color: #fff;
+  text-align: center;
+  font-size: 25rpx;
+  padding: 10rpx;
+}
+
+.school-list-photo-free-up {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  width: 50rpx;
+  height: 84rpx;
+}

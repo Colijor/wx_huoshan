@@ -314,7 +314,8 @@ Page({
         command: "sendctrl",
         v: "17",
         d: {
-          k1: items.txtPath
+          k1: items.txtPath,
+          classifyName: items.classifyName
         }
       };
       console.log("播放素材");
