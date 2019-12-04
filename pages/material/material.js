@@ -312,9 +312,10 @@ Page({
       //已下载，就播放
       var data = {
         command: "sendctrl",
-        v: "17",
+        v: "39",
         d: {
-          k1: items.txtPath,
+          k1: 0,
+          k2: items.txtPath,
           classifyName: items.classifyName
         }
       };

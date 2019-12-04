@@ -350,6 +350,25 @@ Page({
       }
     }
   },
+  /**
+   * 获取聚焦
+   */
+  focus: function (e) {
+    var keyHeight = e.detail.height;
+    console.log("获取焦点" + e.detail.height);
+    this.setData({
+      inputBottom: keyHeight + 'px'
+    })
+    console.log(this.data.inputBottom);
+  },
+  //失去聚焦(软键盘消失)
+  blur: function (e) {
+    console.log("失去聚焦");
+    this.setData({
+      inputBottom: '120rpx'
+    })
+    console.log(this.data.inputBottom);
+  },
   //监听input值的改变
   bindChange: function(e) {
     if (e.detail.value == '') {

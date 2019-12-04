@@ -25,7 +25,7 @@
 </view>
 
 <!-- 设置霸屏内容 -->
-<view wx:if="{{hiddenmodalput}}" class="bapingContent">
+<view wx:if="{{hiddenmodalput}}" class="bapingContent" style="bottom:{{inputBottom}}">
   <view class="closeBpsetting" bindtap="closeBpSet">
     <image src='../../images/close.png'></image>
   </view>
@@ -51,7 +51,7 @@
       <image class="school-list-photo2" src="{{bpImg}}"></image>
       <view class="input-text-voice-super">
         <image src="../../images/keyboard.png" class="extra-btn-style1" bindtap="changeInputWayEvent" />
-        <input class="chat-input-style" maxlength="500" placeholder="请输入霸屏内容.." value="{{bapingword}}" bindinput="bindChange" disabled="{{isdisabled}}" />
+        <input type="text" class="chat-input-style" maxlength="500" placeholder="请输入霸屏内容.." value="{{bapingword}}" bindinput="bindChange" bindconfirm="send" adjust-position='{{false}}' confirm-type="send" bindfocus="focus" bindblur="blur" disabled="{{isdisabled}}" />
         <image wx:if="{{increase}}" src="../../images/addImg.png" class="extra-btn-style2" bindtap="chooseImage" />
         <!-- <input class="chat-input-style" maxlength="500" placeholder="请输入霸屏内容.." value="{{bapingword}}" bindinput="bindChange"/>
         <image src="../../images/addImg.png" class="extra-btn-style2" bindtap="chooseImage" /> -->

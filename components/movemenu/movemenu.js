@@ -73,7 +73,8 @@ Component({
       console.log(x,y)
       this.setData({
         x: x,
-        y: y
+        y: y,
+        showmenus: true
       })
     }
   },
