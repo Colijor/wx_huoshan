@@ -539,7 +539,7 @@ Page({
         websocket.send('{ "command": "sendctrl","v":"47","d":{"k1":0,"k2":1}}');
         break;
       case "5":
-        websocket.send('{ "command": "sendctrl","v":"43","d":{"k1":0,"k2":1}}');
+        websocket.send('{ "command": "sendctrl","v":"43","d":{"k1":0,"k2":0}}');
         break;
       case "6":
         this.setData({
