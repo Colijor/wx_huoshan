@@ -51,5 +51,8 @@ App({
     classifyId: -1,
     x: wx.getSystemInfoSync().windowWidth,
     y: wx.getSystemInfoSync().windowHeight,
+    type: 1,//素材或场景
+    olddate: '',//上一次的点击时间
+    id: ''//被点击的素材或场景id
   }
 })

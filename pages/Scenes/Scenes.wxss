@@ -5,6 +5,18 @@ page {
   height: 100%;
 }
 
+.nav{
+	width:100%;
+	height:90rpx;
+	display:flex;
+	flex-direction:row;
+  color: #ffffff;
+  background-color: #3A3A52;
+  position:fixed;
+  top: 0rpx;
+  z-index:23;
+}
+
 .section__title{
   width:100%;
 	position:fixed;
@@ -17,7 +29,7 @@ page {
 }
 
 .schoollist {
-  padding-top: 74rpx;
+  padding-top: 98rpx;
   padding-bottom: 150rpx;
 }
 
@@ -28,7 +40,7 @@ page {
   padding: 0 20rpx;
 } */
 
-.school-list-item{
+.school-list-item,.checkbox-group-item{
   background-color: #3A3A52;
   width: 100%;
   margin-top: 10rpx;
@@ -82,4 +94,37 @@ page {
   text-align: center;
   font-size: 25rpx;
   padding: 10rpx;
+}
+
+.default{
+	line-height:90rpx;
+	text-align:center;
+	flex:1;
+	color:#fff;
+	font-size:36rpx;
+}
+.yellow{
+	line-height:90rpx;
+	text-align:center;
+	color:#FFE570;
+	flex:1;
+	font-size:36rpx;
+}
+.show{
+	display:block;
+	widows: 750rpx;
+}
+.hidden{
+	display:none;
+	widows: 750rpx;
+}
+
+.radio-group{
+  padding: 40rpx;
+}
+
+.radio{
+  font-size: 40rpx;
+  color: #ffffff;
+  padding: 20rpx;
 }

@@ -1,7 +1,12 @@
 <!--pages/scenes/scenes.wxml-->
 <import src="../../template/nav" />
 
-<view class="section__title">点击您喜欢的预览框，即可播放相应的视频</view>
+<view class="nav nav-wrap">
+  <view class="{{selected?'yellow':'default'}}" bindtap="selected">场景</view>
+  <view class="{{selected1?'yellow':'default'}}" bindtap="selected1">分类</view>
+</view>
+
+<view class="{{selected?'show':'hidden'}}">
 <view class="schoollist">
     <view class="school-list">
       <block wx:for="{{items}}" wx:for-index="i">
@@ -18,6 +23,19 @@
         </view>
       </block>
     </view>
+</view>
+</view>
+
+<view class="{{selected1?'show':'hidden'}}">
+<view class="schoollist">
+    <view class="school-list">
+      <radio-group class="radio-group" bindchange="chooseClassify">
+        <radio class="radio" wx:for-items="{{classifyItems}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+            <text>{{item.name}}</text>
+        </radio>
+      </radio-group>
+    </view>
+</view>
 </view>
 
 <!-- 功能悬浮球 -->

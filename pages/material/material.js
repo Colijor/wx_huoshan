@@ -8,6 +8,7 @@ var allItems = []; //全部素材
 var cloundList = []; //云端素材
 var localList = []; //本地素材
 var timer = null;
+var materialId = '';
 Page({
 
   /**
@@ -135,6 +136,10 @@ Page({
                     icon: "none",
                     duration: 2000
                   })
+                }else{
+                  app.globalData.olddate = new Date().getTime();
+                  app.globalData.type = 1;
+                  app.globalData.id = materialId;
                 }
                 return;
               }
@@ -321,7 +326,21 @@ Page({
       };
       console.log("播放素材");
       console.log(JSON.stringify(data));
-      websocket.send(JSON.stringify(data));
+      if ((app.globalData.type == 1 && app.globalData.id != items.id) || (app.globalData.type != 1)){
+        materialId = items.id;
+        websocket.send(JSON.stringify(data));
+      } else {
+        var olddate = app.globalData.olddate;
+        var nowdate = new Date().getTime();
+        var diff = nowdate - olddate;
+        console.log('nowdate:' + nowdate);
+        console.log('olddate:' + olddate);
+        console.log('diff:' + diff);
+        if(diff > 3000){
+          materialId = items.id;
+          websocket.send(JSON.stringify(data));
+        }
+      }
     } else {
       //下载中
       wx.showToast({

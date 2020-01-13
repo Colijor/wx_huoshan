@@ -7,6 +7,7 @@ var hadLastPage = false;
 var localsrcs = [];
 var cloundLists = [];
 var timer = null;
+var sceneId = '';
 Page({
   /**
    * 页面的初始数据
@@ -20,11 +21,13 @@ Page({
     message: "",
     previewImgList: [],
     ip: "",
-    sceneid: '',
     itemsIndex: 0,
     showId: '',
     notScanCode: true,
-    state: "-1"
+    state: "-1",
+    selected: true,
+    selected1: false,
+    classifyItems: []
   },
   /**
    * 生命周期函数--监听页面加载
@@ -35,7 +38,34 @@ Page({
   onShow: function() {
     console.log('onShow');
     console.log(app.globalData.userInfo);
-
+    // this.onloadScenes();
+    this.onloadScenes();
+  },
+  onHide: function() {
+    console.log("onhide");
+    clearInterval(timer);
+    wx.closeSocket();
+  },
+  onUnload: function() {
+    console.log("onUnload");
+    clearInterval(timer);
+    wx.closeSocket();
+  },
+  selected: function(e) {
+    this.setData({
+      selected: true,
+      selected1: false
+    });
+    this.onloadScenes(); //全部场景
+  },
+  selected1: function(e) {
+    this.setData({
+      selected: false,
+      selected1: true,
+    });
+    this.onloadClassify(); //全部素材分类
+  },
+  onloadScenes: function(){
     page = 1;
     hadLastPage = false;
 
@@ -165,6 +195,10 @@ Page({
                 icon: "none",
                 duration: 2000
               })
+            } else {
+              app.globalData.olddate = new Date().getTime();
+              app.globalData.type = 2;
+              app.globalData.id = sceneId;
             }
           }
         }
@@ -172,16 +206,6 @@ Page({
     }, function(res) {
       websocket.send('{ "command": "login", "nickName": "' + app.globalData.userInfo.nickName + '", "avatarUrl": "' + app.globalData.userInfo.avatarUrl + '","code":"' + app.globalData.authcode + '","iv":"' + app.globalData.iv + '","encryptedData":"' + app.globalData.encryptedData + '" ,"roomcode":"' + app.globalData.roomcode + '"}');
     });
-  },
-  onHide: function() {
-    console.log("onhide");
-    clearInterval(timer);
-    wx.closeSocket();
-  },
-  onUnload: function() {
-    console.log("onUnload");
-    clearInterval(timer);
-    wx.closeSocket();
   },
   getScenes: function() {
     // 显示加载图标
@@ -223,12 +247,6 @@ Page({
       data.command = "changresstate";
       data.id = scenes.id;
       data.type = "2";
-
-      // var state = 'items[' + itemsIndex + '].state';
-      // this.setData({
-      //   [state]: 2
-      // });
-
       console.log(JSON.stringify(data));
       websocket.send(JSON.stringify(data));
     } else if (scenes.state == 1) {
@@ -236,11 +254,26 @@ Page({
       var data = {
         command: "playscence",
         index: 0,
-        pngPath: scenes.pngPath
+        pngPath: scenes.pngPath,
+        windows: scenes.windows
       };
       console.log("播放场景");
       console.log(JSON.stringify(data));
-      websocket.send(JSON.stringify(data));
+      if ((app.globalData.type == 2 && app.globalData.id != scenes.id) || (app.globalData.type != 2)) {
+        sceneId = scenes.id;
+        websocket.send(JSON.stringify(data));
+      } else {
+        var olddate = app.globalData.olddate;
+        var nowdate = new Date().getTime();
+        var diff = nowdate - olddate;
+        console.log('nowdate:' + nowdate);
+        console.log('olddate:' + olddate);
+        console.log('diff:' + diff);
+        if (diff > 3000) {
+          sceneId = scenes.id;
+          websocket.send(JSON.stringify(data));
+        }
+      }
     } else {
       //下载中
       wx.showToast({
@@ -248,6 +281,40 @@ Page({
         icon: "none",
         duration: 2000
       })
+    }
+  },
+  onloadClassify: function(){
+    var that = this;
+    wx.request({
+      url: app.globalData.serverUrl+'/select/list?code=6',
+      method: 'get',
+      data: '',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log('获取所有素材分类');
+        console.log(res);
+        that.setData({
+          'classifyItems': res.data
+        })
+      }
+    });
+  },
+  chooseClassify: function(e){
+    var classifyName = e.detail.value;
+    console.log("分类名称："+classifyName);
+    if(classifyName){
+      var data = {
+        command: "sendctrl",
+        v: "39",
+        d: {
+          k1: 0,
+          k2: classifyName
+        }
+      };
+      console.log(JSON.stringify(data));
+      websocket.send(JSON.stringify(data));
     }
   },
   // 页面卸载
