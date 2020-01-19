@@ -408,7 +408,7 @@ Page({
       bapingid: baping.id,
       itemsIndex: itemsIndex,
       theme: baping.name,
-      bpZhuti: 'https://huoshan.szhssj.com.cn/baping/' + baping.id+'/frame_compact.png',
+      bpZhuti: 'https://huoshan.szhssj.com.cn/baping/' + baping.channel+'/' + baping.id+'/frame_compact.png',
       free: baping.free,
       showId: baping.id,
       price: 0

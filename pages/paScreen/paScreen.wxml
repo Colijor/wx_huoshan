@@ -11,7 +11,7 @@
         <view class="school-list-item">
           <block wx:for="{{2}}" wx:for-index="k" wx:for-item="item_k">
             <view wx:if="{{items[i+item_k] != null && i%2 == 0 }}" class="school-list-info" data-index="{{i+item_k}}" data-baping="{{items[i+item_k]}}" bindtap="increase">
-              <image id="img{{items[i+item_k].id}}" class="{{showId == items[i+item_k].id ? 'school-list-photo-Selected':'school-list-photo'}}" src="https://huoshan.szhssj.com.cn/baping/{{items[i+item_k].id}}/frame_compact.png" />
+              <image id="img{{items[i+item_k].id}}" class="{{showId == items[i+item_k].id ? 'school-list-photo-Selected':'school-list-photo'}}" src="https://huoshan.szhssj.com.cn/baping/{{items[i+item_k].channel}}/{{items[i+item_k].id}}/frame_compact.png" />
               <image wx:if="{{items[i+item_k].free == 1}}" class="school-list-photo-free-up" src="../../images/free.png" />
               <view wx:if="{{items[i+item_k].state != 1}}" class="school-list-photo school-list-photo-up">
                   <text class="school-list-notLoad">{{items[i+item_k].state == 0 ?'未下载' : '下载中'}}</text>
