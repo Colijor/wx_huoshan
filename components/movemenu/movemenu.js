@@ -20,7 +20,7 @@ Component({
    */
   data: {
     areaWidth: wx.getSystemInfoSync().windowWidth - 30,
-    areaHeight: wx.getSystemInfoSync().windowHeight - 110,
+    areaHeight: wx.getSystemInfoSync().windowHeight - 130,
     showmenus: true,
     isChange: false,
     x: app.globalData.x,
@@ -58,6 +58,11 @@ Component({
         "id": "6",
         "ico": "icon-iconfontsaoyisao-copy",
         "title": "扫码",
+      },
+      {
+        "id": "7",
+        "ico": "icon-beijing",
+        "title": "背景",
       }
     ],
     mainmodel: {
@@ -148,20 +153,20 @@ Component({
       console.log(this.data.moveX);
       console.log(this.data.moveY);
       if (this.data.isChange) {
-        var areaX = wx.getSystemInfoSync().windowWidth / 2;
+        var areaY = wx.getSystemInfoSync().windowHeight / 2;
         this.setData({
-          y: this.data.moveY,
+          x: this.data.moveX,
           isChange: false
         });
-        if (this.data.moveX < areaX) {
+        if (this.data.moveY < areaY) {
           this.setData({
-            x: 0,
-            moveX: 0
+            y: 0,
+            moveY: 0
           });
         } else {
           this.setData({
-            x: wx.getSystemInfoSync().windowWidth,
-            moveX: wx.getSystemInfoSync().windowWidth
+            y: wx.getSystemInfoSync().windowHeight,
+            moveY: wx.getSystemInfoSync().windowHeight
           });
         }
         console.log("movableTochend");

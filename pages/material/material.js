@@ -461,6 +461,10 @@ Page({
           },
           complete: (res) => {}
         });
+        break;
+      case "7":
+        websocket.send('{ "command": "rereg","mode":"1"}');
+        break;
     }
   },
   /**

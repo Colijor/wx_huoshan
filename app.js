@@ -49,7 +49,7 @@ App({
     roomcode: '',
     channel: '-1',
     classifyId: -1,
-    x: wx.getSystemInfoSync().windowWidth,
+    x: 0,
     y: wx.getSystemInfoSync().windowHeight,
     type: 1,//素材或场景
     olddate: '',//上一次的点击时间

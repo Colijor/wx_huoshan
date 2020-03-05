@@ -1,7 +1,7 @@
 <!--components/movemenu/movemenu.wxml-->
 <movable-area class='menuarea' style="height:{{areaHeight}}px;width:{{areaWidth}}px;">
   <movable-view class="menu_box" animation="{{false}}" direction="all" x="{{x}}" y="{{y}}" bindchange="movableChange" bindtouchend="movableTochend">
-    <view hidden='{{showmenus}}' class="{{showmenus?'menu_main_wrap':'menu_main_wrap2'}}" style="{{absolute}}:100%;{{absolute2}}:0;">
+    <view hidden='{{showmenus}}' class="{{showmenus?'menu_main_wrap':'menu_main_wrap2'}}" style="{{absolute}}:0;{{absolute2}}:80rpx;">
       <block wx:for='{{menulist}}' wx:key='menulist'>
         <view hover="true" hover-class="hoverClass" class='menu_main' catchtap='itemclick' data-item='{{item}}'>
           <icon class="menu_img iconfont {{item.ico}}"></icon>
